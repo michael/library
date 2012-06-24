@@ -1,0 +1,6 @@
+[submodule "lib/talk"]
+	path = lib/talk
+	url = git://github.com/substance/talk.git
+[submodule "lib/document"]
+	path = lib/document
+	url = git://github.com/substance/document.git
