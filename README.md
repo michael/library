@@ -1,3 +1,5 @@
+This document is best viewed in [Prose](http://prose.io/#substance/library/master/README.md).
+
 Library
 =======
 
