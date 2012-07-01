@@ -1,7 +1,6 @@
-var express = require('express');
-var app     = express.createServer();
 var fs      = require('fs');
 var _       = require('underscore');
+var Agent   = require('./src/agent');
 
 
 // Load config defaults from JSON file.
@@ -18,13 +17,5 @@ function loadConfig() {
 
 var config = loadConfig();
 
-
-// Web Server
-// =============
-
-app.use(express.static(__dirname + '/public'));
-app.use(express.static(__dirname));
-app.listen(3000);
-
-console.log('Server started @ '+ config.server_port);
-
+// Starts listening automatically
+var agent = new Agent(3100);
