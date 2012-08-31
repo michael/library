@@ -2,6 +2,7 @@ var fs      = require('fs');
 var _       = require('underscore');
 var Agent   = require('./src/agent');
 
+
 // Load config defaults from JSON file.
 // Environment variables override defaults.
 function loadConfig() {
