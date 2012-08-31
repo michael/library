@@ -1,8 +1,9 @@
 var Talk = require('../lib/talk/lib/talk');
-var Document = require('../lib/document/document');
+var Document = require('../lib/document');
 var fs = require('fs');
 
 var schema = JSON.parse(fs.readFileSync(__dirname+ '/../data/schema.json', 'utf-8'));
+var emptyDoc = JSON.parse(fs.readFileSync(__dirname+ '/../data/empty_document.json', 'utf-8'));
 
 var Agent = function(port) {
   var documents = {}; // Open documents
@@ -36,7 +37,9 @@ var Agent = function(port) {
     console.log('handler.. doc:create called', data);
     
     // 1. create a new doc
-    var document = Document.create(schema);
+    // var document = Document.create(schema);
+    var document = _.clone(emptyDoc);
+
 
     // 2. register that doc within documents + add current client to session
     registerDocument(line, document);
