@@ -4,7 +4,7 @@ var fs = require('fs');
 var _  = require('underscore');
 
 // var schema = JSON.parse(fs.readFileSync(__dirname+ '/../data/schema.json', 'utf-8'));
-var emptyDoc = JSON.parse(fs.readFileSync(__dirname+ '/../data/empty_document.json', 'utf-8'));
+var emptyDoc = fs.readFileSync(__dirname+ '/../data/empty_document.json', 'utf-8');
 
 // Storage interface and implementation
 // -----------------
@@ -30,7 +30,7 @@ var DocumentStore = function() {
   // ["addref", {"name": "patch-michael" "operation": "a6eac1a63de0ec7df012087e28704c3e"}]
   // Also see: https://github.com/substance/document/issues/2
   this.update = function(id, operations) {
-    
+
   };
 
   // Deletes a document from the store
@@ -96,9 +96,10 @@ var Agent = function(port) {
   // Broadcasts the latest confirmed operation to all active sessions
   // but leaves out the original sender, as the op is already applied
   function broadcastDocUpdate(line, message) {
-    talk.lines.forEach(function() {
+    // TODO: implement
+    // talk.lines.forEach(function() {
       
-    });
+    // });
   }
 
   
@@ -114,12 +115,13 @@ var Agent = function(port) {
   // -----------------
 
   talk.handle('document:open', function(line, options, cb) {
+
     // 1. Fetch or create document
     var docSpec = store.get(options.id);
 
     // Or Create a new doc and store it
     if (!docSpec) {
-      docSpec = _.clone(emptyDoc);
+      docSpec = _.clone(JSON.parse(emptyDoc));
       docSpec.id = options.id;
       store.set(options.id, docSpec);
       console.log('created new doc '+options.id);
